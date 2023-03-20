@@ -1,16 +1,41 @@
-# app_perfomance
+<h1 align="center">About</h1>
 
-A new Flutter project.
+# Run project
+```sh
+flutter run lib/main.dart
+```
 
-## Getting Started
+<br />
 
-This project is a starting point for a Flutter application.
+# Run sorting imports
+```sh
+flutter pub run import_sorter:main
+```
 
-A few resources to get you started if this is your first Flutter project:
+<br />
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Generate files
+```sh
+flutter packages pub run build_runner build --delete-conflicting-outputs
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<br />
+
+# Модуль 20. Perfomance
+
+#### Задание
+1. Создать приложение со сложным layout:
+    - проанализировать layout через Flutter Inspector, приложить скриншоты.
+
+2. Проанализировать приложение с помощью PerformanceView:
+    - оптимизировать работу с точки зрения производительности. Приложить скриншоты до и после оптимизации.
+
+3. Проанализировать приложение с помощью CPU Profiler и MemoryView:
+    - найти самые затратные компоненты, идентифицировать их и приложить скриншоты.
+    - специально добавить memory leak и посмотреть, как это выглядит на MemoryView. Приложить скриншоты.
+
+4. Добавить в приложение сетевой слой для получения данных из сети:
+    - проанализировать данные с помощью NetworkView, приложить скриншоты.
+
+5. Добавить в приложение статический Feature Toggle (или отдельный Entry Point) который включает/отключает сетевой слой:
+    - проанализировать размер приложения с включённым и отключённым сетевым слоем. Приложить скриншоты.
