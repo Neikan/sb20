@@ -1,19 +1,10 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+part of '../screen_hotels.dart';
 
-// Project imports:
-import 'package:app_perfomance/data/models/api_hotel.dart';
-import 'package:app_perfomance/presentation/consts/keys.dart';
-import 'package:app_perfomance/presentation/consts/routes.dart';
-import 'package:app_perfomance/presentation/consts/translations.dart';
-import 'package:app_perfomance/presentation/styles/text.dart';
-
-class UiButtonGoTo extends StatelessWidget {
+class _UiButtonGoTo extends StatelessWidget {
   final ApiHotel hotel;
   final bool? isListView;
 
-  const UiButtonGoTo({
-    super.key,
+  const _UiButtonGoTo({
     required this.hotel,
     this.isListView,
   });

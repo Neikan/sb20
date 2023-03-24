@@ -8,10 +8,24 @@ import 'package:dio/dio.dart';
 import 'package:app_perfomance/data/consts/urls.dart';
 import 'package:app_perfomance/data/models/api_hotel.dart';
 import 'package:app_perfomance/data/services/service_http.dart';
+import 'package:app_perfomance/presentation/consts/keys.dart';
+import 'package:app_perfomance/presentation/consts/routes.dart';
+import 'package:app_perfomance/presentation/consts/translations.dart';
+import 'package:app_perfomance/presentation/styles/text.dart';
+import 'package:app_perfomance/presentation/ui/components/ui_app_bar.dart';
+import 'package:app_perfomance/presentation/ui/components/ui_card.dart';
 import 'package:app_perfomance/presentation/ui/components/ui_error_data.dart';
+import 'package:app_perfomance/presentation/ui/components/ui_image_asset.dart';
 import 'package:app_perfomance/presentation/ui/components/ui_loader.dart';
-import 'package:app_perfomance/presentation/ui/screens/screen_hotels/components/ui_app_bar_hotels.dart';
-import 'package:app_perfomance/presentation/ui/screens/screen_hotels/components/ui_view_hotels.dart';
+import 'package:app_perfomance/presentation/ui/components/ui_text.dart';
+
+part 'components/ui_app_bar.dart';
+part 'components/ui_grid_card.dart';
+part 'components/ui_button_go_to.dart';
+part 'components/ui_grid.dart';
+part 'components/ui_list_card.dart';
+part 'components/ui_list.dart';
+part 'components/ui_view.dart';
 
 class ScreenHotels extends StatelessWidget {
   const ScreenHotels({super.key});
@@ -26,7 +40,7 @@ class ScreenHotels extends StatelessWidget {
             String message = (snapshot.error as DioError).message;
 
             return Scaffold(
-              appBar: const UiAppBarHotels(),
+              appBar: const _UiAppBar(),
               body: UiErrorData(text: message),
             );
           }
@@ -37,11 +51,11 @@ class ScreenHotels extends StatelessWidget {
               .map((hotel) => ApiHotel.fromJson(hotel))
               .toList();
 
-          return UiViewHotels(hotels: hotels);
+          return _UiView(hotels: hotels);
         }
 
         return const Scaffold(
-          appBar: UiAppBarHotels(),
+          appBar: _UiAppBar(),
           body: UiLoader(),
         );
       },

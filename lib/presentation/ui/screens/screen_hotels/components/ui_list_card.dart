@@ -1,18 +1,9 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+part of '../screen_hotels.dart';
 
-// Project imports:
-import 'package:app_perfomance/data/models/api_hotel.dart';
-import 'package:app_perfomance/presentation/ui/components/ui_card.dart';
-import 'package:app_perfomance/presentation/ui/components/ui_image_asset.dart';
-import 'package:app_perfomance/presentation/ui/components/ui_text.dart';
-import 'package:app_perfomance/presentation/ui/screens/screen_hotels/components/ui_button_go_to.dart';
-
-class UiListCardHotel extends StatelessWidget {
+class _UiListCard extends StatelessWidget {
   final ApiHotel hotel;
 
-  const UiListCardHotel({
-    super.key,
+  const _UiListCard({
     required this.hotel,
   });
 
@@ -37,7 +28,7 @@ class UiListCardHotel extends StatelessWidget {
                   withOverflow: true,
                 ),
               ),
-              UiButtonGoTo(
+              _UiButtonGoTo(
                 hotel: hotel,
                 isListView: true,
               ),

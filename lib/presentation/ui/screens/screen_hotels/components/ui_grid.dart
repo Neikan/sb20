@@ -1,16 +1,9 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+part of '../screen_hotels.dart';
 
-// Project imports:
-import 'package:app_perfomance/data/models/api_hotel.dart';
-import 'package:app_perfomance/presentation/consts/keys.dart';
-import 'package:app_perfomance/presentation/ui/screens/screen_hotels/components/grid_hotels/ui_grid_card_hotel.dart';
-
-class UiGridHotels extends StatelessWidget {
+class _UiGrid extends StatelessWidget {
   final List<ApiHotel> hotels;
 
-  const UiGridHotels({
-    super.key,
+  const _UiGrid({
     required this.hotels,
   });
 
@@ -26,7 +19,7 @@ class UiGridHotels extends StatelessWidget {
         childAspectRatio: 1.1,
       ),
       itemCount: hotels.length,
-      itemBuilder: (_, index) => UiGridCardHotel(
+      itemBuilder: (_, index) => _UiGridCard(
         hotel: hotels[index],
       ),
     );

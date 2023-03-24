@@ -1,17 +1,10 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+part of '../screen_hotels.dart';
 
-// Project imports:
-import 'package:app_perfomance/presentation/consts/routes.dart';
-import 'package:app_perfomance/presentation/consts/translations.dart';
-import 'package:app_perfomance/presentation/ui/components/ui_header.dart';
-
-class UiAppBarHotels extends StatelessWidget implements PreferredSizeWidget {
+class _UiAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool? isListView;
   final VoidCallback? onSwitchView;
 
-  const UiAppBarHotels({
-    super.key,
+  const _UiAppBar({
     this.isListView,
     this.onSwitchView,
   });
