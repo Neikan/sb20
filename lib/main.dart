@@ -2,6 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:app_perfomance/components/app.dart';
+import 'package:app_perfomance/presentation/ui/components/ui_app.dart';
 
-void main() => runApp(const App());
+void main() => runApp(const UiApp());
