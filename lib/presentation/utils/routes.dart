@@ -6,7 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
 import 'package:app_perfomance/data/models/api_hotel.dart';
+import 'package:app_perfomance/data/repositories/repository_hotel/repository_hotel_imp.dart';
 import 'package:app_perfomance/data/repositories/repository_hotels/repository_hotels_imp.dart';
+import 'package:app_perfomance/domain/blocs/bloc_hotel/bloc_hotel.dart';
+import 'package:app_perfomance/domain/blocs/bloc_hotel/bloc_hotel_events.dart';
 import 'package:app_perfomance/domain/blocs/bloc_hotels/bloc_hotels.dart';
 import 'package:app_perfomance/domain/blocs/bloc_hotels/bloc_hotels_events.dart';
 import 'package:app_perfomance/presentation/consts/keys.dart';
@@ -31,7 +34,11 @@ Route<dynamic> generateRoute(RouteSettings settings) => MaterialPageRoute(
             final arguments = settings.arguments as Map<String, ApiHotel>;
             final hotel = arguments[keyHotel]!;
 
-            return ScreenHotel(hotel: hotel);
+            return BlocProvider<BlocHotel>(
+              create: (_) => BlocHotel(repo: const RepositoryHotelImp())
+                ..add(BlocHotelEventInit(hotel.uuid)),
+              child: ScreenHotel(title: hotel.name),
+            );
 
           case routeMemoryLeaks:
             return const ScreenMemoryLeaks();

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Project imports:
-import 'package:app_perfomance/data/models/api_hotel.dart';
-import 'package:app_perfomance/data/models/api_hotel_detailed/api_hotel_detailed.dart';
 import 'package:app_perfomance/data/models/api_hotel_detailed/submodels/api_hotel_address.dart';
 import 'package:app_perfomance/data/models/api_hotel_detailed/submodels/api_hotel_services.dart';
-import 'package:app_perfomance/data/services/service_http.dart';
+import 'package:app_perfomance/domain/blocs/bloc_hotel/bloc_hotel.dart';
+import 'package:app_perfomance/domain/blocs/bloc_hotel/bloc_hotel_state.dart';
 import 'package:app_perfomance/presentation/consts/keys.dart';
 import 'package:app_perfomance/presentation/consts/translations.dart';
 import 'package:app_perfomance/presentation/consts/urls.dart';
@@ -27,46 +26,32 @@ part 'components/ui_hotel_services.dart';
 part 'components/ui_services_list.dart';
 
 class ScreenHotel extends StatelessWidget {
-  final ApiHotel hotel;
+  final String title;
 
   const ScreenHotel({
     super.key,
-    required this.hotel,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UiAppBar(title: hotel.name),
-      body: FutureBuilder(
-        future: ServiceHttp.instance.get(hotel.uuid),
-        builder: (BuildContext _, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError) {
-              String message = (snapshot.error as DioError).message;
-
-              return UiErrorData(text: message);
-            }
-
-            final Response<dynamic> response = snapshot.data;
-
-            final ApiHotelDetailed hotelDetailed =
-                ApiHotelDetailed.fromJson(response.data);
-
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _UiHotelPhotos(photos: hotelDetailed.photos),
-                  _UiHotelAddress(address: hotelDetailed.address),
-                  _UiHotelServices(services: hotelDetailed.services),
-                ],
-              ),
-            );
-          }
-
-          return const UiLoader();
-        },
+      appBar: UiAppBar(title: title),
+      body: BlocBuilder<BlocHotel, BlocHotelState>(
+        builder: (_, state) => state.when(
+          loading: () => const UiLoader(),
+          loaded: (hotelDetailed) => SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _UiHotelPhotos(photos: hotelDetailed.photos),
+                _UiHotelAddress(address: hotelDetailed.address),
+                _UiHotelServices(services: hotelDetailed.services),
+              ],
+            ),
+          ),
+          error: (message) => UiErrorData(text: message),
+        ),
       ),
     );
   }
