@@ -21,7 +21,7 @@ class HotelPhotos extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8.0),
       child: CarouselSlider(
         options: CarouselOptions(
-          autoPlay: true,
+          autoPlay: false,
           aspectRatio: 2.0,
         ),
         items: photos
@@ -34,7 +34,7 @@ class HotelPhotos extends StatelessWidget {
                       Image.asset(
                         '$localUrlImage$image',
                         fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
+                        width: 300,
                       ),
                     ],
                   ),
