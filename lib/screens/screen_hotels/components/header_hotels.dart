@@ -1,4 +1,5 @@
 // Flutter imports:
+import 'package:app_perfomance/consts/routes.dart';
 import 'package:flutter/material.dart';
 
 // Project imports:
@@ -26,6 +27,14 @@ class HeaderHotels extends StatelessWidget implements PreferredSizeWidget {
       title: labelHotels,
       actions: isListView != null
           ? [
+              IconButton(
+                icon: const Icon(
+                  Icons.memory,
+                  color: Colors.grey,
+                ),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(routeMemoryLeaks),
+              ),
               IconButton(
                 icon: Icon(
                   Icons.list_rounded,

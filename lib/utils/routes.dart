@@ -7,6 +7,7 @@ import 'package:app_perfomance/consts/routes.dart';
 import 'package:app_perfomance/models/api_hotel.dart';
 import 'package:app_perfomance/screens/screen_hotel/screen_hotel.dart';
 import 'package:app_perfomance/screens/screen_hotels/screen_hotels.dart';
+import 'package:app_perfomance/screens/screen_memory_leak/screen_memory_leak.dart';
 import 'package:app_perfomance/screens/screen_not_found.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) => MaterialPageRoute(
@@ -21,6 +22,9 @@ Route<dynamic> generateRoute(RouteSettings settings) => MaterialPageRoute(
             final hotel = arguments[keyHotel]!;
 
             return ScreenHotel(hotel: hotel);
+
+          case routeMemoryLeaks:
+            return const ScreenMemoryLeaks();
 
           default:
             return const ScreenNotFound();
